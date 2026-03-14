@@ -52,7 +52,7 @@ Apply research-backed design practices while generating frontend code. The goal 
 
 ### Process
 
-1. Read [practices.md](references/practices.md) for the full checklist
+1. Read [practices.md](references/practices.md) for the category index, then read the relevant category guides for the current task
 2. While generating code, silently apply the relevant practices:
    - Accessibility: contrast, focus states, ARIA, heading hierarchy
    - Typography: line length, font size, hierarchy, fluid scaling
@@ -81,9 +81,9 @@ Scan existing frontend code for problems, then provide improvement suggestions. 
 
 ### Process
 
-1. Read [practices.md](references/practices.md) for the full checklist
+1. Read [practices.md](references/practices.md) for the category index, then read the relevant category guides
 2. Read [report-format.md](references/report-format.md) for the output template
-3. **Phase 1 — Checklist Pass:** Scan the code against each relevant category in practices.md
+3. **Phase 1 — Checklist Pass:** Scan the code against the checklist in each relevant category guide
    - For each violation: note file location, what's wrong, which practice it violates
    - Classify severity: critical (harms trust/accessibility/usability), warning (reduces quality), note (minor)
 4. **Phase 2 — Suggestions Pass:** Apply the core principles above to find improvement opportunities
@@ -147,7 +147,7 @@ The most critical items across all categories. Full checklists in [practices.md]
 
 | File | When to read |
 |---|---|
-| [practices.md](references/practices.md) | Both modes — full checklists by category (14 categories) |
+| [practices.md](references/practices.md) | Both modes — index of 14 categories, each linking to a detailed guide with checklist + guidance + common mistakes |
 | [report-format.md](references/report-format.md) | Audit mode — output template with severity tiers |
 | [patterns.md](references/patterns.md) | When you need a specific code implementation |
 | [warnings.md](references/warnings.md) | When checking if design advice is opinion vs research |
