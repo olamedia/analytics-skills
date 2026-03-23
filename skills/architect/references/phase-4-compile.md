@@ -42,17 +42,7 @@ Write in **human language**. No structured field labels where a sentence works. 
 
 Before writing any text, read `references/humanizer.md` and apply its rules. All goal descriptions, acceptance criteria, and testing notes must pass the humanizer filter — no AI vocabulary, no structural tells, no puffery.
 
-### Step 3: Implementation Hints
-
-For each task, decide the level of implementation detail based on task size:
-
-- **Small tasks** — a sentence or two describing the expected change is enough
-- **Medium tasks** — point out what changes are expected in each file, with rough examples
-- **Large tasks** — rough code examples showing the approach
-
-If the user explicitly asks for full code in implementation hints, provide it. Otherwise keep it at the "rough example" level.
-
-### Step 4: Save and Announce
+### Step 3: Save and Announce
 
 Save all compiled files. Announce:
 
@@ -67,36 +57,37 @@ Starts with scope (where in the app), then what's being done. One or two sentenc
 
 Example: "At checkout page, Step 3 — prefill the contact form from the user's default contact when the step opens."
 
-### Links
+### Links (optional)
 One-line placeholder for user to fill in: figma designs, slicing, screenshots, related PRs. Skip the section entirely if nothing to link.
 
 ### Dependencies
 Other tasks/issues this one depends on. Written as linkable references for issue trackers.
 
-### Context
-The relevant slice of the codebase for this task, pulled from `context-map.md`:
-- Files that will be touched, with paths
-- API methods and their signatures
-- DTO fields and types
-- Response examples (if collected during Phase 1)
+### Proposed changes
+A checklist of concrete changes, file by file. Use sub-headers to group related changes when the task has multiple areas (e.g. "Foundation", "UI", "API"). For a single-area task, a flat list is fine.
 
-Only what's relevant to this task — not the full context-map dump.
+Each item is a file path + what to change. Add a motivation line below a group when the reason for the change isn't obvious from the change itself.
 
-### Implementation
-Rough approach — what changes are expected in which files. Level of detail scales with task size. Can include code examples if the user asked for them.
+"Don't touch" constraints belong in acceptance criteria, not here. This section is only what TO do.
 
-### Acceptance Criteria
+Detail scales with task size:
+- **Small tasks** — one line per file is enough
+- **Medium tasks** — file path + what changes in that file
+- **Large tasks** — can include rough code examples if the user asked for them
+
+### Acceptance criteria
 Humanized version of the user stories' acceptance criteria that this task covers. Skip anything already covered by CI (linting, type checks, build).
 
-### Testing Notes
-Manual verification steps. "Open checkout with a domain item in cart. Step 3 should show the contact form prefilled with default contact data. Change the name, click Confirm. Verify the contact is updated."
+Include "don't touch" constraints here — things that must stay unchanged (e.g. "getActiveJobs stays numeric", "existing links keep working"). These prevent the implementer from over-reaching.
 
-Written for someone who will click through the app, not read code.
+### Testing notes
+Manual verification steps. Written for someone who will click through the app, not read code.
 
-### Out of Scope (optional)
+### Notes (optional)
+Uncommon knowledge that helps the implementer but doesn't fit elsewhere — things like "this API already accepts both types (prior art)", "this variable is dead code", "these pages are always navigated to with numeric IDs". Skip if nothing non-obvious to say. Do not state things that are obvious from reading the code.
+
+### Out of scope (optional)
 Only present if `[not-planned]` or `[deferred]` questions from `requirements.md` intersect this task. Prevents the implementer from going down a rabbit hole that was explicitly excluded.
-
-Example: "WHOIS privacy for .uk domains is not handled here — those domains don't support registrar-level privacy."
 
 ## Common Rationalizations
 
@@ -111,22 +102,25 @@ Example: "WHOIS privacy for .uk domains is not handled here — those domains do
 
 - Issues that reference other planning artifacts ("see design.md for details") — they must be self-contained
 - AI-language in the issue text — run through `references/humanizer.md` filter
-- Structured field labels where a sentence works
-- Dumping the entire context-map into every issue
+- Proposed changes that duplicate the goal or acceptance criteria — each section has one job
+- Dumping the entire context-map into proposed changes — only include files that change
 - Missing scope in the goal — reader doesn't know where in the app this is
-- Implementation hints that are full implementations — keep them rough unless user asked for full code
+- Proposed changes that are full implementations — keep them rough unless user asked for full code
 - Acceptance criteria that repeat CI checks ("code compiles", "no linter errors")
 - Missing testing notes — if it has UI, it needs manual test steps
+- Notes section stating things obvious from reading the code — only uncommon knowledge
+- Copying from competitor/reference material without verifying against actual codebase research
 
 ## Verification
 
 For each compiled issue, confirm:
 
 - [ ] Goal includes scope (where) and purpose (what)
-- [ ] Context contains only what's relevant to this task
-- [ ] API signatures and DTO fields are from context-map (not assumed)
-- [ ] Acceptance criteria are humanized and skip CI-covered items
+- [ ] Proposed changes are a concrete checklist — file paths and what to change
+- [ ] Acceptance criteria are humanized, skip CI checks, and include "don't touch" constraints
 - [ ] Testing notes describe manual steps a tester can follow
 - [ ] No references to other planning artifacts — issue is self-contained
 - [ ] Written in human language throughout
+- [ ] Notes section only contains non-obvious knowledge (or is omitted)
 - [ ] Out of scope section present only if relevant exclusions exist
+- [ ] Everything traces back to user stories — nothing copied from external sources without verification

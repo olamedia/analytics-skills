@@ -317,38 +317,40 @@ Used by Phase 4 (Compile). Each file is a standalone, self-contained issue for a
 Example: "At checkout page, Step 3 — prefill the contact form from the user's default contact when the step opens."
 
 ## Links
-[figma, screenshots, slicing, related PRs — to be filled in]
+[Optional. figma, screenshots, slicing, related PRs — to be filled in. Skip section if nothing to link.]
 
 ## Dependencies
 - [Task/issue this depends on — linkable for issue trackers]
 
-## Context
-[Relevant slice of the codebase for this task, pulled from context-map. Only what's relevant — not a full dump.]
+## Proposed changes
+[Checklist of concrete changes, file by file. Use sub-headers to group when the task spans multiple areas. Flat list for single-area tasks. Add a motivation line below a group when the reason isn't obvious.]
 
-- Files: `path/to/file.ts`, `path/to/component.vue`
-- API: `contactsApi.getContactsPage(query, page)` returns paginated ContactDto[]
-- DTO: `CartOptionsDto` has `contact_id?: number`
-- Response example (if available):
-  ```json
-  { "cart_options": { "add_privacy": true, "contact_id": 42 } }
-  ```
+### [Area name, e.g. "API layer"]
+- [ ] `path/to/file.ts` — what to change
+- [ ] `path/to/other-file.ts` — what to change
 
-## Implementation
-[Rough approach — what changes are expected in which files. Detail scales with task size: sentence for small tasks, file-by-file expectations for medium, rough code examples for large. Full code only if user explicitly asked.]
+### [Area name, e.g. "UI"]
+- [ ] `path/to/component.vue` — what to change
+- [ ] `path/to/other-component.vue` — what to change
 
-## Acceptance Criteria
-[Humanized version of user stories' acceptance criteria that this task covers. Skip anything covered by CI.]
+Motivation: [why this group of changes is needed, if not obvious]
+
+## Acceptance criteria
+[Humanized version of user stories' acceptance criteria. Skip anything covered by CI. Include "don't touch" constraints — things that must stay unchanged.]
 
 - Contact form prefills first name, last name, email, phone from the default contact
 - Changing a field and clicking Confirm updates the existing contact
-- Privacy toggle state is sent to the backend with the cart options
+- getContactsPage stays paginated — not changed to load all at once
 
-## Testing Notes
+## Testing notes
 [Manual verification steps. Written for someone clicking through the app.]
 
 Open checkout with a domain item in cart. Step 3 should show with the contact form prefilled. Change the name, click Confirm. Verify the name updated. Remove all domain items from cart. Step 3 should disappear.
 
-## Out of Scope
+## Notes
+[Optional. Uncommon knowledge that helps the implementer — prior art, dead code, non-obvious relationships. Skip if nothing non-obvious. Do not state things obvious from reading the code.]
+
+## Out of scope
 [Optional. Only present if [not-planned] or [deferred] questions from requirements intersect this task.]
 
 WHOIS privacy for .uk domains is not handled here — those domains don't support registrar-level privacy.
