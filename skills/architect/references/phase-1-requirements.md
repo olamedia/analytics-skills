@@ -142,9 +142,17 @@ Rules:
 | `[not-planned]` | Related concern, explicitly excluded. Reason follows. |
 | `[deferred]` | Will be addressed later. Reason follows. |
 
+### Step 4: Design Readiness Check
+
+Before closing Phase 1, walk through the Phase 2 process (`references/phase-2-design.md`) and check if you can complete each step using only `requirements.md` and `context-map.md`. Do this in one pass — collect all questions that surface, don't stop at the first one.
+
+If questions were collected — add them all as `[to-ask]` to `requirements.md`, present them to the user together, and loop back to Step 3. Run research if needed to fill gaps in `context-map.md`.
+
+Only proceed when the full pass produces no new questions.
+
 ### Phase 1 Ends
 
-When no `[to-ask]` questions remain and the user has nothing to add, Phase 1 is done. `requirements.md` is already complete.
+When no `[to-ask]` questions remain, the design readiness check passed, and the user has nothing to add, Phase 1 is done. `requirements.md` is already complete.
 
 > "Requirements complete at `[path]/requirements.md`. Continue to design?"
 
@@ -172,6 +180,7 @@ When no `[to-ask]` questions remain and the user has nothing to add, Phase 1 is 
 - Success criteria that say "works correctly" or "is fast"
 - Empty questions section — every feature has questions
 - Not running initial research after idea is confirmed
+- Closing Phase 1 without the design readiness check — questions will surface during Phase 2 and force backtracking
 - Writing code during the requirements phase
 
 ## Verification
@@ -186,6 +195,7 @@ Before handing off, confirm:
 - [ ] Every user story has verifiable acceptance criteria
 - [ ] Questions log has no `[to-ask]` items remaining
 - [ ] User has reviewed and nothing left to add
+- [ ] Design readiness check performed — mental design draft produced no new questions
 - [ ] `requirements.md` is up to date (has been updated incrementally throughout)
 
 ## Next
