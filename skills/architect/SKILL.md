@@ -107,7 +107,7 @@ Only if the user asks for it. Follow the compile process (see `references/phase-
 
 - Ask which tasks to compile (all or specific ones)
 - Create `tasks/` folder, one `task-N.md` per task
-- Each issue is self-contained: goal with scope, context from context-map, implementation hints, humanized acceptance criteria, testing notes
+- Each issue is self-contained: goal with scope, proposed changes checklist, humanized acceptance criteria with "don't touch" constraints, testing notes, optional notes for uncommon knowledge
 - Written in human language for developers and testers
 
 > "Compiled [N] tasks to `[path]/tasks/`. Each issue is self-contained and ready for your issue tracker."
