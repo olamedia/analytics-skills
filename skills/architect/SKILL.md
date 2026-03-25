@@ -59,10 +59,11 @@ Follow the requirements process (see `references/phase-1-requirements.md`):
 1. Ask user for the idea/goal
 2. Compile intent block in user's own words
 3. When user confirms initial idea is complete → run research → save `context-map.md`
-4. Ask clarification questions, write user stories
-5. Track all questions with statuses
-6. Loop until no open questions remain and user has nothing to add
-7. Save `requirements.md`
+4. Convert intent into initial user stories (extract what's clear, note gaps)
+5. Ask clarification questions about gaps, refine stories
+6. Track all questions with statuses
+7. Loop until no open questions remain and user has nothing to add
+8. Save `requirements.md`
 
 Present summary and confirm before continuing:
 

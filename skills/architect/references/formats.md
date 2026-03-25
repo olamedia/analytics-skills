@@ -108,7 +108,7 @@ The context-map for the architect pipeline is **focused** — it only contains c
 
 ## Template: requirements.md
 
-Three sections: **Intent** (user's words), **User Stories** (AI-generated clarification), **Questions** (running log).
+Four sections: **Intent** (user's words), **Goal** (humanized summary of stories), **User Stories** (structured clarification), **Questions** (running log).
 
 ```markdown
 # Requirements: [Feature Name]
@@ -119,6 +119,12 @@ Three sections: **Intent** (user's words), **User Stories** (AI-generated clarif
 Do NOT rephrase in corporate or AI language.
 If the user said "we should also update privacy since BE might not do it", write exactly that.
 This block is the source of truth. Update it whenever the user refines or extends the goal.]
+
+## Goal
+
+[Short humanized prose that merges all user stories into a readable summary.
+Written for a human reader who doesn't want to parse formal user story format.
+Must be updated whenever user stories change — always reflects the current set.]
 
 ## User Stories
 

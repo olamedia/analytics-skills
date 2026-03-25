@@ -24,7 +24,7 @@ This is a READ-ONLY requirements phase. Do NOT write any code, create any source
 `requirements.md` is created the moment the user says the first bit of the idea. It is updated incrementally throughout Phase 1 — not assembled at the end.
 
 - Intent block → written on the first user message, updated on every subsequent one
-- User stories → added as clarification questions are answered
+- User stories → initial set derived from the intent after research, refined as questions are answered
 - Questions log → entries added as questions arise, statuses updated as they're resolved
 
 Every step below updates `requirements.md` in place. There is no "save at the end" step.
@@ -61,23 +61,41 @@ Present a brief summary:
 
 > "Context mapped. Found: [key APIs], [key DTOs], [key components]. [Any notable gaps]."
 
-### Step 3: Requirements Loop
+### Step 3: Initial User Stories
 
-After initial research, the requirements loop begins. It is driven by **new requirements** from the user and **questions** from the AI. There are no separate stages — questions, user stories, and research all happen as a natural consequence of new information arriving.
+After research, convert the intent into initial user stories. Read the intent block and `context-map.md` together — derive every user story you can from what's already clear. Write them into `requirements.md`.
 
-**The trigger is always: a new requirement or clarification from the user.**
+This step is about extraction, not invention. Only write stories that trace directly to the intent. Don't ask questions yet — just convert what you have into structured form. Gaps and ambiguities will become obvious during this conversion; note them but save questions for Step 4.
+
+After writing the stories, compile a **Goal** section in `requirements.md` — a short humanized summary that merges all user stories into readable prose. The Goal sits between Intent and User Stories. It is the essence of what the stories describe, written for a human reader who doesn't want to parse formal user story format.
+
+**The Goal must be updated whenever user stories are added, removed, or changed** — it always reflects the current set of stories.
+
+Present the initial stories and goal to the user for review.
+
+### Step 4: Requirements Loop
+
+After initial stories are written, the requirements loop begins. It is driven by **new requirements** from the user and **questions** from the AI. Questions arise naturally from gaps discovered during Step 3 and from new information arriving.
+
+**The trigger is always: a new requirement or clarification from the user, or gaps found during story writing.**
 
 When a new requirement arrives (user adds something, or answers a question):
 
 1. **Update Intent** in `requirements.md` if it refines or extends the goal
-2. **Ask questions** if anything is unclear — add them to Questions section as `[to-ask]`
-3. **Write user stories** from the parts that are clear — add to User Stories section
+2. **Write or update user stories** from the parts that are clear — add to User Stories section
+3. **Ask questions** if anything is unclear — add them to Questions section as `[to-ask]`
 4. **Run research** if the requirement mentions things not in context-map (see `references/research.md`, "subsequent research") → update `context-map.md`
 5. **Update questions** when answered — change status to `[resolved]`, add answer on next line
 
 This loop runs until no `[to-ask]` questions remain and the user has nothing to add.
 
 #### Asking Questions
+
+Before marking a question `[to-ask]`, check if the codebase can answer it. Run research (`references/research.md`, subsequent research) and update `context-map.md` with findings. Only mark `[to-ask]` if the answer requires a human decision — not missing context.
+
+All questions go into the Questions section of `requirements.md` first — with the correct status (`[resolved]` if answered by research, `[to-ask]` if it needs the user). Then present only the `[to-ask]` items to the user. Never ask a question verbally without writing it into the document first.
+
+**API contracts are not up for discussion.** Frontend DTOs mirror the backend contract. The contract is either already in the codebase (existing API), described by backend tasks, or defined in a parent task. If the contract exists — read it from OpenAPI spec, existing DTOs, or backend repositories (if running in a mixed environment with BE and FE repos, the contract may be discoverable via research). If it doesn't exist yet — it's a backend concern, not a frontend requirements question. Do not ask how the API should be shaped.
 
 Ask targeted questions — one at a time. Focus on what's unclear in the intent:
 
@@ -99,7 +117,7 @@ How should the system handle duplicate contacts?
 
 Users can answer with "A" or "1A, 2C" for quick iteration.
 
-Do NOT assume answers. If you don't know, add a `[to-ask]` question.
+Do NOT assume answers. If you don't know and the codebase can't answer, add a `[to-ask]` question.
 
 #### Writing User Stories
 
@@ -142,11 +160,11 @@ Rules:
 | `[not-planned]` | Related concern, explicitly excluded. Reason follows. |
 | `[deferred]` | Will be addressed later. Reason follows. |
 
-### Step 4: Design Readiness Check
+### Step 5: Design Readiness Check
 
 Before closing Phase 1, walk through the Phase 2 process (`references/phase-2-design.md`) and check if you can complete each step using only `requirements.md` and `context-map.md`. Do this in one pass — collect all questions that surface, don't stop at the first one.
 
-If questions were collected — add them all as `[to-ask]` to `requirements.md`, present them to the user together, and loop back to Step 3. Run research if needed to fill gaps in `context-map.md`.
+If questions were collected — add them all as `[to-ask]` to `requirements.md`, present them to the user together, and loop back to Step 4. Run research if needed to fill gaps in `context-map.md`.
 
 Only proceed when the full pass produces no new questions.
 
@@ -180,6 +198,11 @@ When no `[to-ask]` questions remain, the design readiness check passed, and the 
 - Success criteria that say "works correctly" or "is fast"
 - Empty questions section — every feature has questions
 - Not running initial research after idea is confirmed
+- Jumping straight to questions without first deriving user stories from the intent — stories make gaps visible
+- Goal section missing or stale after user stories were updated
+- Asking the user a question that the codebase could answer — run research first
+- Asking a question verbally without writing it into the Questions section first
+- Asking how to design a DTO instead of asking what the backend returns — API contracts are backend decisions
 - Closing Phase 1 without the design readiness check — questions will surface during Phase 2 and force backtracking
 - Writing code during the requirements phase
 
@@ -190,6 +213,10 @@ Before handing off, confirm:
 - [ ] Artifact folder exists and path is known
 - [ ] Intent block uses user's exact words
 - [ ] Initial research completed and `context-map.md` saved
+- [ ] Initial user stories derived from intent before questions were asked
+- [ ] Goal section compiled from user stories and kept in sync with any story changes
+- [ ] All questions written into document before being asked
+- [ ] Research-answerable questions resolved via codebase, not asked to user
 - [ ] All clarification questions asked and answered
 - [ ] Assumptions listed and confirmed by user
 - [ ] Every user story has verifiable acceptance criteria
