@@ -118,6 +118,8 @@ Identify:
 
 ### Step 7: Write or Update Context Map
 
+**CRITICAL:** After every research run — including design readiness checks, ad-hoc lookups triggered by user input, and gap-filling during any phase — update `context-map.md` BEFORE updating any other artifact. New components, types, files, or gaps go into context-map first. It is the single source of truth for what exists in the codebase. Never update `requirements.md` or `design.md` with new findings without first recording them in `context-map.md`.
+
 **First research:** Write `context-map.md` to the artifact folder using the template from `references/formats.md`. Include all findings from Steps 2-6.
 
 **Subsequent research:** Read existing `context-map.md`, add new findings to the appropriate sections, and save. Do NOT overwrite existing content — append to it.

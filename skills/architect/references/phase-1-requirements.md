@@ -49,6 +49,24 @@ After each user message, update the Intent block in `requirements.md` and ask:
 
 Continue until the user says the initial idea draft is complete.
 
+### Step 1b: Design Slicing Check
+
+Before running research, check if the feature involves **new UI components**. If it does, design slicing (a reference implementation, mockup component, or visual spec) is a **task dependency** — not something to search for.
+
+Ask the user:
+
+> "This feature needs new UI. Where is the design slicing? Provide a path, or point me to an existing component to use as a reference."
+
+The user may:
+- Provide a path to existing slicing
+- Create a slicing file and provide the path
+- Point to an existing component and say "do it like this one"
+- Say there is no slicing — note it as a gap and proceed with requirements based on the user's verbal description
+
+**Do NOT search the codebase hoping to find slicing.** If slicing exists, the user knows where it is. If it doesn't exist, the user will tell you how to proceed. Never design UI from scratch when the project has a design system.
+
+When slicing is provided, read it during research (Step 2) and document it in `context-map.md` — it defines the target layout, props, emits, and UIKit dependencies.
+
 ### Step 2: Initial Research
 
 Once the user confirms the idea draft is complete, run research on the codebase. This is **mandatory** — never skip it.
@@ -162,7 +180,17 @@ Rules:
 
 ### Step 5: Design Readiness Check
 
-Before closing Phase 1, walk through the Phase 2 process (`references/phase-2-design.md`) and check if you can complete each step using only `requirements.md` and `context-map.md`. Do this in one pass — collect all questions that surface, don't stop at the first one.
+Before closing Phase 1, walk through **every step** of the Phase 2 process (`references/phase-2-design.md`) and for each, check if you can complete it using only `requirements.md` and `context-map.md`. Do this in one pass — collect all questions that surface, don't stop at the first one.
+
+Checklist to walk through:
+
+- **Components** — Can you name every component, its location, and its dependencies? Are all UIKit/shared components available in the project, or do any need porting/creating?
+- **Data flow** — Can you trace the full flow from trigger to render to cleanup?
+- **Dependencies** — Are all imports resolvable? Any missing packages or components?
+- **Integration points** — Do you know every file that needs modification?
+- **Risks** — Can you identify concrete risks with evidence?
+
+If new context was discovered during this check (e.g. a component doesn't exist, a utility is missing), **update `context-map.md` first**, then add questions to `requirements.md`. Context-map is always updated before any other artifact.
 
 If questions were collected — add them all as `[to-ask]` to `requirements.md`, present them to the user together, and loop back to Step 4. Run research if needed to fill gaps in `context-map.md`.
 

@@ -18,6 +18,16 @@ This phase does what the original `architecture` skill does, but consumes `requi
 This is a READ-ONLY design phase. Do NOT write any code, create any source files, or modify the codebase. The output is an architecture document, not implementation.
 </HARD-GATE>
 
+## Change Propagation During Design
+
+Any user input during Phase 2 that adds or refines a requirement must follow the orchestrator's change propagation rules:
+
+1. **Propose changes** to all affected docs, starting from `requirements.md`
+2. **Wait for user agreement**
+3. **Apply in one batch** — update all affected docs together
+
+Do NOT edit `design.md` directly when the user provides new context — start from `requirements.md`. Every user correction or addition is a new requirement, even if it seems like a small design tweak.
+
 ## The Process
 
 ### Step 1: Load Upstream Artifacts
